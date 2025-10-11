@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
+using ISD_Project.Server;
 
 var builder = WebApplication.CreateBuilder(args);
 var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -75,6 +76,14 @@ builder.Services.AddScoped<IInsuranceContractService, InsuranceContractService>(
 //
 var app = builder.Build();
 
+// Seed the database
+using (var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    var logger = serviceProvider.GetRequiredService<ILogger<DataSeeder>>();
+    var seeder = new DataSeeder(serviceProvider, logger);
+    await seeder.SeedAsync();
+}
 app.UseDefaultFiles();
 app.UseStaticFiles();
 

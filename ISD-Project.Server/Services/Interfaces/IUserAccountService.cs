@@ -14,6 +14,7 @@ namespace ISD_Project.Server.Services.Interfaces
         Task<IActionResult> ForgotPassword(UserForgotPasswordRequest request);
         Task<IActionResult> ResetPassword(UserResetPasswordRequest request);
         Task<IActionResult> EditInfoUserAsync(UserUpdateModel request);
+        Task<bool> UserExistsAsync(string email);
 
     }
 }

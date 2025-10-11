@@ -377,5 +377,9 @@ namespace ISD_Project.Server.Services
             }
         }
 
+        public async Task<bool> UserExistsAsync(string email)
+        {
+            return await _dbContext.UserAccounts.AnyAsync(u => u.Email == email);
+        }
     }
 }

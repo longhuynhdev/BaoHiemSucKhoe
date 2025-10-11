@@ -1,11 +1,6 @@
 ﻿import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, NavLink, useNavigate } from 'react-router-dom';
-/*import { apiRegister } from "../services/auth";*/
-
-
-
-
 
 const RegisterForm = () => {
     const [email,setEmail] = useState('');

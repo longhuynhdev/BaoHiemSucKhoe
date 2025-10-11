@@ -56,24 +56,6 @@ const LoginForm = () => {
             });
     };
 
-
-    /*return (
-    <div>
-        <h1>Login Form</h1>
-        <form>
-            <label>Email: 
-                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </label>
-            <br />
-            <label> Password: 
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </label>
-            <br />
-            <button type="button" onClick={handleLogin}>Login</button>
-        </form>
-    </div>
-    )*/
-
     return (
         <section className="bg-gray-50">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

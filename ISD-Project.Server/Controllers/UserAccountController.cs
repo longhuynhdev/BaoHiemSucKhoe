@@ -49,60 +49,7 @@ namespace ISD_Project.Server.Controllers
         {
             return _userAccountService.GetUserRoleAsync(id);
         }
-
-        [HttpPost("add-user-example"), AllowAnonymous]
-        public async Task<IActionResult> AddUserExample()
-        {
-            var userAdmin = new UserAccountRegisterRequest
-            {
-                Email = "admin@example.com",
-                Password = "string",
-                ConfirmPassword = "string",
-                Role = RoleType.Admin
-            };
-
-            var userFinancialDepartment = new UserAccountRegisterRequest
-            {
-                Email = "findep@example.com",
-                Password = "string",
-                ConfirmPassword = "string",
-                Role = RoleType.FinancialDepartment
-            };
-
-            var userValidationDepartment = new UserAccountRegisterRequest
-            {
-                Email = "validdep@example.com",
-                Password = "string",
-                ConfirmPassword = "string",
-                Role = RoleType.ValidationDepartment
-            };
-
-            var userCustomerCareDepartment = new UserAccountRegisterRequest
-            {
-                Email = "customercaredep@example.com",
-                Password = "string",
-                ConfirmPassword = "string",
-                Role = RoleType.CustomerCareDepartment
-            };
-            try
-            {
-                await _userAccountService.Register(userAdmin);
-                await _userAccountService.Register(userFinancialDepartment);
-                await _userAccountService.Register(userValidationDepartment);
-                await _userAccountService.Register(userCustomerCareDepartment);
-                return new OkObjectResult("Users example data added successfully");
-            }
-            catch (Exception ex)
-            {
-                return new ObjectResult(ex.Message)
-                {
-                    StatusCode = 500 // Internal Server Error
-                };
-            }
-
-
-        }
-
+        
         [HttpPost("verify"), AllowAnonymous]
         public Task<IActionResult> Verify([FromBody] string token)
         {
