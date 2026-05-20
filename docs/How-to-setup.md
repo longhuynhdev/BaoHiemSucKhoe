@@ -1,37 +1,30 @@
-# How to setup guide
+# How to Setup
 
 Simple guide to get the Health Insurance Management System running.
 
 ## Prerequisites
 
-- .NET 8.0 SDK
-- Node.js (v16+)
-- PostgreSQL database
+- .NET 10 SDK
+- PostgreSQL
 
 ## First Time Setup
 
 ### 1. Configure JWT Authentication
 
 ```bash
-cd ISD-Project.Server
+cd Server
 dotnet user-jwts create
 ```
 
 ### 2. Generate HTTPS Certificates
 
 ```bash
-# Windows (PowerShell/CMD)
-mkdir "%APPDATA%\ASP.NET\https" 2>nul
-dotnet dev-certs https --export-path "%APPDATA%\ASP.NET\https\isd-project.client.pem" --format Pem --no-password
-
-# Windows (Git Bash) or Linux/Mac
-mkdir -p "$HOME/AppData/Roaming/ASP.NET/https" || mkdir -p "$HOME/.aspnet/https"
-dotnet dev-certs https --export-path "$HOME/AppData/Roaming/ASP.NET/https/isd-project.client.pem" --format Pem --no-password
+dotnet dev-certs https --trust
 ```
 
 ### 3. Configure Database
 
-Edit `ISD-Project.Server/appsettings.json` if needed:
+Edit `Server/appsettings.json` if needed:
 
 ```json
 "ConnectionStrings": {
@@ -39,42 +32,35 @@ Edit `ISD-Project.Server/appsettings.json` if needed:
 }
 ```
 
-### 4. Setup Database
+### 4. Apply Database Migrations
 
 ```bash
-cd ISD-Project.Server
+cd Server
 dotnet ef database update
-```
-
-### 5. Install Frontend Dependencies
-
-```bash
-cd isd-project.client
-npm install
 ```
 
 ---
 
 ## Running the Project
 
-### Start Backend (Terminal 1)
+### Terminal 1 — Backend
 
 ```bash
-cd ISD-Project.Server
+cd Server
 dotnet run
 ```
 
-Backend runs on: **http://localhost:5275**
-Swagger UI: **http://localhost:5275/swagger**
+- API: `https://localhost:7267`
+- Scalar API UI: `https://localhost:7267/scalar/v1`
 
-### Start Frontend (Terminal 2)
+### Terminal 2 — Frontend (Blazor WebAssembly)
 
 ```bash
-cd isd-project.client
-npm run dev
+cd Client
+dotnet run
 ```
 
-Frontend runs on: **https://localhost:5173**
+- App: `https://localhost:7200`
 
 ---
 
@@ -83,35 +69,33 @@ Frontend runs on: **https://localhost:5173**
 ### Backend
 
 ```bash
-# Run the server
-dotnet run --project ISD-Project.Server
+# Run
+dotnet run --project Server
 
 # Build
-dotnet build
+dotnet build Server
 
-# Run tests
-dotnet test
+# Add migration
+dotnet ef migrations add <MigrationName> --project Server
 
-# Create migration
-dotnet ef migrations add <MigrationName> --project ISD-Project.Server
-
-# Update database
-dotnet ef database update --project ISD-Project.Server
+# Apply migration
+dotnet ef database update --project Server
 ```
 
 ### Frontend
 
 ```bash
-# Development server
-npm run dev
+# Run dev server
+dotnet run --project Client
+
+# Build
+dotnet build Client
 ```
 
 ---
 
 ## Troubleshooting
 
-If you encounter errors:
-
-1. **JWT Authentication fails**: Run `dotnet user-jwts create` in the Server project
-2. **Certificate error in frontend**: Check that HTTPS certificates exist in `%APPDATA%\ASP.NET\https`
-3. **Database connection fails**: Verify PostgreSQL is running and connection string is correct
+1. **JWT Authentication fails** — Run `dotnet user-jwts create` in the `Server` folder
+2. **HTTPS certificate error** — Run `dotnet dev-certs https --trust`
+3. **Database connection fails** — Verify PostgreSQL is running and `connection string` is correct

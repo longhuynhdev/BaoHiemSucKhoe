@@ -93,12 +93,3 @@ internal sealed class BearerSecuritySchemeTransformer(IAuthenticationSchemeProvi
 | `Npgsql.EntityFrameworkCore.PostgreSQL` | 8.0.0 | 10.0.1 |
 
 ---
-
-## Known Warnings (Pre-existing)
-
-These nullable reference warnings existed before the upgrade and are unrelated to it:
-
-- `ValidationService.cs(19)` — uninitialized non-nullable field
-- `ApprovalStatusService.cs` — possible null dereferences
-- `UserAccountService.cs` — nullable value type dereferences
-- `AutoMapper 12.0.1` — known high-severity vulnerability (NU1903); upgrade to `13.x` when ready

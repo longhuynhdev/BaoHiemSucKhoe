@@ -16,7 +16,8 @@ public class ApprovalStatusService : IApprovalStatusService
     private readonly IUserAccountService _userAccount;
     private readonly IEmailService _emailService;
     private readonly IMapper _mapper;
-    public ApprovalStatusService(ApplicationDbContext dbContext, IValidationService validationService, IInsuranceContractService insuranceContractService, IMapper mapper, IEmailService emailService, IUserAccountService userAccountService)
+    private readonly string _clientBaseUrl;
+    public ApprovalStatusService(ApplicationDbContext dbContext, IValidationService validationService, IInsuranceContractService insuranceContractService, IMapper mapper, IEmailService emailService, IUserAccountService userAccountService, IConfiguration configuration)
     {
         _dbContext = dbContext;
         _mapper = mapper;
@@ -24,6 +25,7 @@ public class ApprovalStatusService : IApprovalStatusService
         _insuranceContractService = insuranceContractService;
         _emailService = emailService;
         _userAccount = userAccountService;
+        _clientBaseUrl = configuration["ClientBaseUrl"] ?? string.Empty;
     }
 
     public async Task<IActionResult> AddApprovalStatusAsync(ApprovalStatusDto approvalStatusDto)
@@ -80,13 +82,13 @@ public class ApprovalStatusService : IApprovalStatusService
                     await CreateAndAssignUserAccountForCustomerAsync(insuranceContract.Customer);
                     if (customer.UserAccount is not null)
                     {
-                        await _emailService.SendEmailAsync(customer.Email, "Account created", EmailMessageBody.ProfileApproved(customer.UserAccount.Email, "Demo123", $"https://localhost:5173/activate/{customer.UserAccount.Id}"));
+                        await _emailService.SendEmailAsync(customer.Email, "Account created", EmailMessageBody.ProfileApproved(customer.UserAccount.Email, "Demo123", $"{_clientBaseUrl}/activate/{customer.UserAccount.Id}"));
                     }
                 }
 
 
                 // After updating insurance contract, send email to customer
-                await _emailService.SendEmailAsync(approvalStatus.Customer.Email, "Hồ sơ đăng ký bảo hiểm được duyệt trong hệ thống", EmailMessageBody.ProfileApproved(approvalStatus.Customer.Email, "Demo123", $"https://localhost:5173/activate/{customer.UserAccount.Id}"));
+                await _emailService.SendEmailAsync(approvalStatus.Customer.Email, "Hồ sơ đăng ký bảo hiểm được duyệt trong hệ thống", EmailMessageBody.ProfileApproved(approvalStatus.Customer.Email, "Demo123", $"{_clientBaseUrl}/activate/{customer.UserAccount.Id}"));
 
                 var response = new { approvalStatusId = approvalStatus.Id, message = "Approval status successfully created", value = approvalStatusDto };
                 return new OkObjectResult(response);
