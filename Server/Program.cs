@@ -48,7 +48,7 @@ builder.Services.AddAuthentication("Bearer")
         };
     });
 // Add Services AutoMapper
-builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
 
 
 // inject db context
