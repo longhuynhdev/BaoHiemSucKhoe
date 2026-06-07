@@ -1,8 +1,8 @@
-﻿using ISD_Project.Server.Models;
-using ISD_Project.Server.Models.DTOs;
+﻿using Core;
+using Core.DTOs;
 using Microsoft.EntityFrameworkCore;
 
-namespace ISD_Project.Server.DataAccess
+namespace BaoHiemSucKhoe.Server.DataAccess
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {

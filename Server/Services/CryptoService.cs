@@ -1,13 +1,14 @@
-﻿using ISD_Project.Server.DataAccess;
-using ISD_Project.Server.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using ISD_Project.Server.Services.Interfaces;
-namespace ISD_Project.Server.Services
+using BaoHiemSucKhoe.Server.DataAccess;
+using BaoHiemSucKhoe.Server.Services.Interfaces;
+using Core;
+
+namespace BaoHiemSucKhoe.Server.Services
 {
     public class CryptoService : ICryptoService
     {

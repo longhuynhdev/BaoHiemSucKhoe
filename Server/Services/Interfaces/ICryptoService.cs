@@ -1,6 +1,6 @@
-﻿using ISD_Project.Server.Models;
+﻿using Core;
 
-namespace ISD_Project.Server.Services.Interfaces
+namespace BaoHiemSucKhoe.Server.Services.Interfaces
 {
     public interface ICryptoService
     {

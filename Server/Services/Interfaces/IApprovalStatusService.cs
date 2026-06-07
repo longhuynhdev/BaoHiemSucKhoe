@@ -1,8 +1,8 @@
-﻿using ISD_Project.Server.Models;
-using ISD_Project.Server.Models.DTOs;
+﻿using Core.DTOs;
+using Core.Enums;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ISD_Project.Server.Services.Interfaces;
+namespace BaoHiemSucKhoe.Server.Services.Interfaces;
 
 public interface IApprovalStatusService
 {

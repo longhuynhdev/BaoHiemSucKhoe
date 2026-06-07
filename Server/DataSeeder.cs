@@ -1,9 +1,8 @@
-using ISD_Project.Server.Models;
-using ISD_Project.Server.Models.DTOs;
-using ISD_Project.Server.Services.Interfaces;
-using Microsoft.Extensions.Logging;
+using BaoHiemSucKhoe.Server.Services.Interfaces;
+using Core.DTOs;
+using Core.Enums;
 
-namespace ISD_Project.Server;
+namespace BaoHiemSucKhoe.Server;
 
 public class DataSeeder
 {

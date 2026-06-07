@@ -1,4 +1,4 @@
-﻿namespace ISD_Project.Server.Services.Interfaces;
+﻿namespace BaoHiemSucKhoe.Server.Services.Interfaces;
 
 public interface IEmailService
 {

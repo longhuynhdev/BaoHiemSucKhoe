@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using ISD_Project.Server.DataAccess;
-using ISD_Project.Server.Models.DTOs;
-using ISD_Project.Server.Models;
+using BaoHiemSucKhoe.Server.DataAccess;
+using BaoHiemSucKhoe.Server.Services.Interfaces;
+using Core;
+using Core.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ISD_Project.Server.Services.Interfaces;
 
-namespace ISD_Project.Server.Services
+namespace BaoHiemSucKhoe.Server.Services
 {
     public class CustomerService : ICustomerService
     {

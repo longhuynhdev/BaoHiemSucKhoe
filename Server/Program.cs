@@ -1,7 +1,7 @@
-using ISD_Project.Server.DataAccess;
-using ISD_Project.Server.Profiles;
-using ISD_Project.Server.Services;
-using ISD_Project.Server.Services.Interfaces;
+using BaoHiemSucKhoe.Server.DataAccess;
+using BaoHiemSucKhoe.Server.Profiles;
+using BaoHiemSucKhoe.Server.Services;
+using BaoHiemSucKhoe.Server.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using Scalar.AspNetCore;
 using System.Text;
-using ISD_Project.Server;
+using BaoHiemSucKhoe.Server;
 
 var builder = WebApplication.CreateBuilder(args);
 var myAllowSpecificOrigins = "_myAllowSpecificOrigins";

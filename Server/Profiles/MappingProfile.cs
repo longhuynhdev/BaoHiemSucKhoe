@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using ISD_Project.Server.Models;
-using ISD_Project.Server.Models.DTOs;
+using Core;
+using Core.DTOs;
 
-namespace ISD_Project.Server.Profiles
+namespace BaoHiemSucKhoe.Server.Profiles
 {
     public class MappingProfile : Profile
     {

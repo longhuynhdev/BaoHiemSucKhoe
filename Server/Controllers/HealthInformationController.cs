@@ -1,8 +1,8 @@
-﻿using ISD_Project.Server.Models.DTOs;
-using ISD_Project.Server.Services.Interfaces;
+﻿using BaoHiemSucKhoe.Server.Services.Interfaces;
+using Core.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ISD_Project.Server.Controllers
+namespace BaoHiemSucKhoe.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

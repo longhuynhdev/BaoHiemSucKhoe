@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
-    <RootNamespace>ISD_Project.Server</RootNamespace>
+    <RootNamespace>BaoHiemSucKhoe.Server</RootNamespace>
     <UserSecretsId>ce432fb4-c5f7-4dcf-a6f9-62094d71f28d</UserSecretsId>
   </PropertyGroup>
 
@@ -32,4 +32,8 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+<ItemGroup>
+  <ProjectReference Include="..\Core\Core.csproj" />
+</ItemGroup>
+    
 </Project>

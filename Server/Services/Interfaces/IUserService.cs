@@ -1,7 +1,6 @@
-﻿using ISD_Project.Server.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ISD_Project.Server.Services.Interfaces
+namespace BaoHiemSucKhoe.Server.Services.Interfaces
 {
     public interface IUserService
     {

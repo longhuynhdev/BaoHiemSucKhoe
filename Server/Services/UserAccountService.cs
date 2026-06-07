@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
-using ISD_Project.Server.DataAccess;
-using ISD_Project.Server.Models;
-using ISD_Project.Server.Models.DTOs;
-using ISD_Project.Server.Services.Interfaces;
+using BaoHiemSucKhoe.Server.DataAccess;
+using BaoHiemSucKhoe.Server.Services.Interfaces;
+using Core;
+using Core.DTOs;
+using Core.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace ISD_Project.Server.Services
+namespace BaoHiemSucKhoe.Server.Services
 {
     public class UserAccountService : IUserAccountService
     {
