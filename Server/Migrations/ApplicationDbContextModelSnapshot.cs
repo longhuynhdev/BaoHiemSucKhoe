@@ -17,44 +17,12 @@ namespace BaoHiemSucKhoe.Server.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "10.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ISD_Project.Server.InsuranceContract", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("integer");
-
-                    b.Property<DateOnly>("EndDate")
-                        .HasColumnType("date");
-
-                    b.Property<int>("InsuranceId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProfileStatus")
-                        .HasColumnType("integer");
-
-                    b.Property<DateOnly>("StartDate")
-                        .HasColumnType("date");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("InsuranceId");
-
-                    b.ToTable("InsuranceContracts");
-                });
-
-            modelBuilder.Entity("ISD_Project.Server.Models.ApprovalStatus", b =>
+            modelBuilder.Entity("Core.ApprovalStatus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -92,7 +60,7 @@ namespace BaoHiemSucKhoe.Server.Migrations
                     b.ToTable("ApprovalStatuses");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.DTOs.InsuranceType", b =>
+            modelBuilder.Entity("Core.DTOs.InsuranceType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -133,7 +101,7 @@ namespace BaoHiemSucKhoe.Server.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.HealthInformation", b =>
+            modelBuilder.Entity("Core.HealthInformation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -203,7 +171,7 @@ namespace BaoHiemSucKhoe.Server.Migrations
                     b.ToTable("HealthInformation");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.Insurance", b =>
+            modelBuilder.Entity("Core.Insurance", b =>
                 {
                     b.Property<int>("InsuranceId")
                         .ValueGeneratedOnAdd()
@@ -288,7 +256,39 @@ namespace BaoHiemSucKhoe.Server.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.Role", b =>
+            modelBuilder.Entity("Core.InsuranceContract", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateOnly>("EndDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("InsuranceId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ProfileStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<DateOnly>("StartDate")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("InsuranceId");
+
+                    b.ToTable("InsuranceContracts");
+                });
+
+            modelBuilder.Entity("Core.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -332,7 +332,7 @@ namespace BaoHiemSucKhoe.Server.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.User", b =>
+            modelBuilder.Entity("Core.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -394,7 +394,7 @@ namespace BaoHiemSucKhoe.Server.Migrations
                     b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.UserAccount", b =>
+            modelBuilder.Entity("Core.UserAccount", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -441,7 +441,7 @@ namespace BaoHiemSucKhoe.Server.Migrations
                     b.ToTable("UserAccounts");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.UserRole", b =>
+            modelBuilder.Entity("Core.UserRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -465,16 +465,16 @@ namespace BaoHiemSucKhoe.Server.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.Admin", b =>
+            modelBuilder.Entity("Core.Admin", b =>
                 {
-                    b.HasBaseType("ISD_Project.Server.Models.User");
+                    b.HasBaseType("Core.User");
 
                     b.HasDiscriminator().HasValue("Admin");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.Customer", b =>
+            modelBuilder.Entity("Core.Customer", b =>
                 {
-                    b.HasBaseType("ISD_Project.Server.Models.User");
+                    b.HasBaseType("Core.User");
 
                     b.Property<string>("Job")
                         .IsRequired()
@@ -487,61 +487,42 @@ namespace BaoHiemSucKhoe.Server.Migrations
                     b.HasDiscriminator().HasValue("Customer");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.CustomerCareDepartment", b =>
+            modelBuilder.Entity("Core.CustomerCareDepartment", b =>
                 {
-                    b.HasBaseType("ISD_Project.Server.Models.User");
+                    b.HasBaseType("Core.User");
 
                     b.HasDiscriminator().HasValue("CustomerCareDepartment");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.FinancialDepartment", b =>
+            modelBuilder.Entity("Core.FinancialDepartment", b =>
                 {
-                    b.HasBaseType("ISD_Project.Server.Models.User");
+                    b.HasBaseType("Core.User");
 
                     b.HasDiscriminator().HasValue("FinancialDepartment");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.ValidationDepartment", b =>
+            modelBuilder.Entity("Core.ValidationDepartment", b =>
                 {
-                    b.HasBaseType("ISD_Project.Server.Models.User");
+                    b.HasBaseType("Core.User");
 
                     b.HasDiscriminator().HasValue("ValidationDepartment");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.InsuranceContract", b =>
+            modelBuilder.Entity("Core.ApprovalStatus", b =>
                 {
-                    b.HasOne("ISD_Project.Server.Models.Customer", "Customer")
-                        .WithMany("InsuranceContracts")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ISD_Project.Server.Models.Insurance", "Insurance")
-                        .WithMany("InsuranceContracts")
-                        .HasForeignKey("InsuranceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Insurance");
-                });
-
-            modelBuilder.Entity("ISD_Project.Server.Models.ApprovalStatus", b =>
-                {
-                    b.HasOne("ISD_Project.Server.Models.Customer", "Customer")
+                    b.HasOne("Core.Customer", "Customer")
                         .WithMany("ApprovalStatuses")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ISD_Project.Server.Models.Insurance", "Insurance")
+                    b.HasOne("Core.Insurance", "Insurance")
                         .WithMany("ApprovalStatuses")
                         .HasForeignKey("InsuranceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ISD_Project.Server.Models.ValidationDepartment", "ValidationDepartment")
+                    b.HasOne("Core.ValidationDepartment", "ValidationDepartment")
                         .WithMany("ApprovalStatuses")
                         .HasForeignKey("ValidationDepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -554,44 +535,63 @@ namespace BaoHiemSucKhoe.Server.Migrations
                     b.Navigation("ValidationDepartment");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.HealthInformation", b =>
+            modelBuilder.Entity("Core.HealthInformation", b =>
                 {
-                    b.HasOne("ISD_Project.Server.Models.Customer", "Customer")
+                    b.HasOne("Core.Customer", "Customer")
                         .WithOne("HealthInformation")
-                        .HasForeignKey("ISD_Project.Server.Models.HealthInformation", "CustomerId");
+                        .HasForeignKey("Core.HealthInformation", "CustomerId");
 
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.Insurance", b =>
+            modelBuilder.Entity("Core.Insurance", b =>
                 {
-                    b.HasOne("ISD_Project.Server.Models.DTOs.InsuranceType", "InsuranceType")
+                    b.HasOne("Core.DTOs.InsuranceType", "InsuranceType")
                         .WithMany("Insurances")
                         .HasForeignKey("InsuranceTypeId");
 
                     b.Navigation("InsuranceType");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.UserAccount", b =>
+            modelBuilder.Entity("Core.InsuranceContract", b =>
                 {
-                    b.HasOne("ISD_Project.Server.Models.User", "User")
+                    b.HasOne("Core.Customer", "Customer")
+                        .WithMany("InsuranceContracts")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Insurance", "Insurance")
+                        .WithMany("InsuranceContracts")
+                        .HasForeignKey("InsuranceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Insurance");
+                });
+
+            modelBuilder.Entity("Core.UserAccount", b =>
+                {
+                    b.HasOne("Core.User", "User")
                         .WithOne("UserAccount")
-                        .HasForeignKey("ISD_Project.Server.Models.UserAccount", "UserId");
+                        .HasForeignKey("Core.UserAccount", "UserId");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.UserRole", b =>
+            modelBuilder.Entity("Core.UserRole", b =>
                 {
-                    b.HasOne("ISD_Project.Server.Models.Role", "Role")
+                    b.HasOne("Core.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ISD_Project.Server.Models.UserAccount", "UserAccount")
+                    b.HasOne("Core.UserAccount", "UserAccount")
                         .WithOne("UserRole")
-                        .HasForeignKey("ISD_Project.Server.Models.UserRole", "UserAccountId")
+                        .HasForeignKey("Core.UserRole", "UserAccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -600,34 +600,34 @@ namespace BaoHiemSucKhoe.Server.Migrations
                     b.Navigation("UserAccount");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.DTOs.InsuranceType", b =>
+            modelBuilder.Entity("Core.DTOs.InsuranceType", b =>
                 {
                     b.Navigation("Insurances");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.Insurance", b =>
+            modelBuilder.Entity("Core.Insurance", b =>
                 {
                     b.Navigation("ApprovalStatuses");
 
                     b.Navigation("InsuranceContracts");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.Role", b =>
+            modelBuilder.Entity("Core.Role", b =>
                 {
                     b.Navigation("UserRoles");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.User", b =>
+            modelBuilder.Entity("Core.User", b =>
                 {
                     b.Navigation("UserAccount");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.UserAccount", b =>
+            modelBuilder.Entity("Core.UserAccount", b =>
                 {
                     b.Navigation("UserRole");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.Customer", b =>
+            modelBuilder.Entity("Core.Customer", b =>
                 {
                     b.Navigation("ApprovalStatuses");
 
@@ -636,7 +636,7 @@ namespace BaoHiemSucKhoe.Server.Migrations
                     b.Navigation("InsuranceContracts");
                 });
 
-            modelBuilder.Entity("ISD_Project.Server.Models.ValidationDepartment", b =>
+            modelBuilder.Entity("Core.ValidationDepartment", b =>
                 {
                     b.Navigation("ApprovalStatuses");
                 });

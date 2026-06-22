@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/ServiceDefaults/">
+    <Project Path="ServiceDefaults/BaoHiemSucKhoe.ServiceDefaults.csproj" />
+  </Folder>
+  <Project Path="BaoHiemSucKhoe.AppHost/BaoHiemSucKhoe.AppHost.csproj" />
   <Project Path="Client/Client.csproj" />
   <Project Path="Core/Core.csproj" />
   <Project Path="Server/Server.csproj" />

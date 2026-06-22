@@ -12,6 +12,9 @@ using System.Text;
 using BaoHiemSucKhoe.Server;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
+
 var myAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 // CORS: https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-10.0
@@ -68,14 +71,20 @@ builder.Services.AddScoped<IInsuranceContractService, InsuranceContractService>(
 //
 var app = builder.Build();
 
-// Seed the database
+// Apply pending migrations and seed the database
 using (var scope = app.Services.CreateScope())
 {
     var serviceProvider = scope.ServiceProvider;
+
+    var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
+    await dbContext.Database.MigrateAsync();
+
     var logger = serviceProvider.GetRequiredService<ILogger<DataSeeder>>();
     var seeder = new DataSeeder(serviceProvider, logger);
     await seeder.SeedAsync();
 }
+app.MapDefaultEndpoints();
+
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
